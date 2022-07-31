@@ -1,13 +1,13 @@
-package com.doo.menubackend;
+package com.doo.menu;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MenuBackendApplication {
+public class MenuApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MenuBackendApplication.class, args);
+		SpringApplication.run(MenuApplication.class, args);
 	}
 
 }

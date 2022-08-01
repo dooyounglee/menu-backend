@@ -30,6 +30,7 @@ public class Menu {
 	private String route;
 	private String component;
 	private boolean dropdown; //하위메뉴 여부
+	private String delYn; // 삭제여부
 	
 	@DocumentReference()
 	private List<Menu> collapse;

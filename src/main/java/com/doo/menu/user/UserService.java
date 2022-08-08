@@ -25,8 +25,8 @@ public class UserService {
 		return userRepository.save(user);
 	}
 
-	public Optional<User> signIn(User user) {
-		return userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword());
+	public Optional<User> findByEmail(String email) {
+		return userRepository.findByEmail(email);
 	}
 	
 	

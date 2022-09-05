@@ -86,4 +86,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		source.registerCorsConfiguration("/**", config);
 		return source;
 	}
+	
+	@Bean
+	BCryptPasswordEncoder encoder() {
+		return new BCryptPasswordEncoder();
+	}
+	
 }

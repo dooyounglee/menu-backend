@@ -1,6 +1,7 @@
 package com.doo.menu.auth;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,22 @@ public class AuthService {
 		return authRepository.save(auth);
 	}
 
-	public Optional<Auth> getAuthById(String id) {
-		return authRepository.findById(id);
+	public void saveMenus(Map<String, Object> param) {
+		Optional<Auth> oAuth = authRepository.findById((String)param.get("auth"));
+		if(oAuth.isPresent()) {
+			Auth auth = oAuth.get();
+			auth.setMenus((List<String>)param.get("arr"));
+			authRepository.save(auth);
+		}
+	}
+	
+	public void saveUsers(Map<String, Object> param) {
+		Optional<Auth> oAuth = authRepository.findById((String)param.get("auth"));
+		if(oAuth.isPresent()) {
+			Auth auth = oAuth.get();
+			auth.setUsers((List<String>)param.get("arr"));
+			authRepository.save(auth);
+		}
 	}
 	
 	public void deleteAuth(Auth auth) {

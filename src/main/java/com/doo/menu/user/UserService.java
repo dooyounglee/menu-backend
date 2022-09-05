@@ -17,7 +17,6 @@ public class UserService {
 	}
 
 	public Optional<User> getUserById(String id) {
-		// TODO Auto-generated method stub
 		return userRepository.findById(id);
 	}
 
@@ -29,6 +28,9 @@ public class UserService {
 		return userRepository.findByEmail(email);
 	}
 	
+	public int countByEmail(String email) {
+		return userRepository.findListByEmail(email).size();
+	}
 	
 
 }

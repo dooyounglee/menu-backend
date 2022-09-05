@@ -1,8 +1,6 @@
 package com.doo.menu.menu;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -40,50 +38,11 @@ public class MenuController {
 	
 	@PostMapping("/save")
 	public void postSave(@RequestBody Menu menu) {
-		System.out.println(menu);
 		menuService.save(menu);
-		System.out.println(menu);
-		
-		if(menu.getParentId() != null) {
-			Optional<Menu> oParent = menuService.getMenuById(menu.getParentId());
-			if(oParent.isPresent()) {
-				Menu parent = oParent.get();
-				System.out.println(parent);
-				List<Menu> collapse = parent.getCollapse();
-				if(collapse == null) {
-					collapse = new ArrayList<Menu>();
-					collapse.add(menu);
-					menuService.save(parent);
-				} else {
-					if(parent.getCollapse().indexOf(menu) == -1) {
-						collapse.add(menu);
-						collapse.sort((o1, o2) -> ((Menu)o1).getOrder() - ((Menu)o2).getOrder());
-						//parent.setCollapse(collapse);
-						//System.out.println(parent);
-						menuService.save(parent);
-					}
-				}
-			}
-		}
 	}
 	
 	@DeleteMapping("/delete")
 	public void deleteMenu(@RequestBody Menu menu) {
-		System.out.println(menu);
-		
-		if(menu.getParentId() != null) {
-			Optional<Menu> oParent = menuService.getMenuById(menu.getParentId());
-			if(oParent.isPresent()) {
-				Menu parent = oParent.get();
-				System.out.println(parent);
-				List<Menu> collapse = parent.getCollapse();
-				//System.out.println(collapse);
-				collapse.remove(menu);
-				//System.out.println(collapse);
-				System.out.println(parent);
-				menuService.save(parent);
-			}
-		}
-		menuService.deleteMenu(menu.getId());
+		menuService.deleteMenu(menu);
 	}
 }
